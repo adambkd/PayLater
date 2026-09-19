@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PayLater.Api/PayLater.Api.csproj" />
+  <Project Path="PayLater.Tests/PayLater.Tests.csproj" />
+</Solution>
