@@ -31,6 +31,8 @@ public class Purchase
     Amount = amount;
     CreatedAt = DateTime.UtcNow;
     Status = PurchaseStatus.Active;
+
+    CreateInstallments();
 }
 
 private void CreateInstallments()
