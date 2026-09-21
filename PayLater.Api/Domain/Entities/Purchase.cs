@@ -4,7 +4,15 @@ namespace PayLater.Api.Domain.Entities;
 
 public class Purchase
 {
-    public Purchase(int customerId, decimal amount)
+    public int Id { get; set; }
+    public int CustomerId { get; private set; }
+    public decimal Amount { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public PurchaseStatus Status { get; private set; }
+    private readonly List<Installment> _installments = [];
+    public IReadOnlyCollection<Installment> Installments => _installments;
+
+        public Purchase(int customerId, decimal amount)
 {
     if (amount <= 0)
     {
@@ -24,11 +32,22 @@ public class Purchase
     CreatedAt = DateTime.UtcNow;
     Status = PurchaseStatus.Active;
 }
-    public int Id { get; set; }
-    public int CustomerId { get; private set; }
-    public decimal Amount { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public PurchaseStatus Status { get; private set; }
-    private readonly List<Installment> _installments = [];
-    public IReadOnlyCollection<Installment> Installments => _installments;
+
+private void CreateInstallments()
+{
+    decimal installmentAmount = Amount / 4;
+
+    for (int i = 0; i < 4; i++)
+    {
+        var dueDate = DateOnly.FromDateTime(CreatedAt.AddMonths(i));
+
+        _installments.Add(
+            new Installment(
+                installmentAmount,
+                dueDate
+            )
+        );
+    }
+}
+
 }
