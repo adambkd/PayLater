@@ -12,7 +12,7 @@ public class Installment
     public DateTime? PaidAt { get; private set; }
     public InstallmentStatus Status { get; private set; }
 
-    public Installment(int purchaseId, decimal amount, DateOnly dueDate)
+    public Installment(decimal amount, DateOnly dueDate)
     {
         if (amount <= 0)
         {
@@ -22,7 +22,6 @@ public class Installment
             );
         }
 
-        PurchaseId = purchaseId;
         Amount = amount;
         DueDate = dueDate;
 

@@ -10,7 +10,6 @@ public class InstallmentTests
     {
         // Arrange
         var installment = new Installment(
-            purchaseId: 1,
             amount: 2000m,
             dueDate: new DateOnly(2026, 10, 20)
         );
