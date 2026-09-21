@@ -27,4 +27,15 @@ public class PurchaseTests
             Assert.Equal(InstallmentStatus.Pending, installment.Status);
         }
     }
+
+    [Fact]
+    public void Constructor_WithInvalidAmount_ThrowsException()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new Purchase(
+                customerId: 1,
+                amount: -100m
+            )
+        );
+    }
 }
